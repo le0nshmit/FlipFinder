@@ -20,7 +20,8 @@ def create_routes(page_bp, page_api):
     def search():
         data = get_data()
         token = get_access_token()
+        search_query = data.get('search') if data else None
         filters = data.get('filters') if data else None
-        items = search_items(data['search'], token, filters=filters)
+        items = search_items(search_query, token, filters=filters)
 
         return jsonify({'success': True, 'data': items.get('itemSummaries')})

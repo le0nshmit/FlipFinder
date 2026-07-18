@@ -1,28 +1,46 @@
-function displayListing(data){
+function displayListing(data) {
+    console.log(data);
     const listingsContainer = document.getElementById('listings');
 
+    if (!listingsContainer) return;
 
-    for (item in data) {
+    listingsContainer.innerHTML = '';
+
+    for (const item of data || []) {
         const row = document.createElement('div');
 
-
         const listingData = {
-            'title': data[item]['title'],
-            'price': data[item]['price']['value'],
-            'image': data[item]['image']['imageUrl'],
-            'date': data[item]['itemCreationDate'],
+            title: item?.title || 'Untitled',
+            price: item?.price?.value || 0,
+            currency: item?.price?.currency,
+            image: item?.image?.imageUrl || '',
+            date: item?.itemCreationDate || '',
+            url: item?.itemWebUrl || '',
         };
 
+
+        const currencies = {
+            'USD': '$',
+            'GBP': '£',
+            'EUR': '€'
+        };
+
+        if (listingData.currency in currencies) {
+            listingData.price = `${currencies[listingData.currency]}${listingData.price}`;
+        }
 
         row.className = 'relative w-full h-50 flex';
 
         row.innerHTML = `
-            <div class="w-[15%] h-full"><img class="h-full w-full object-cover cursor-pointer p-6 rounded-4xl" src="${listingData.image}" alt="listing"></div>
-            
+            <div class="w-[15%] h-full">
+                <a href="${listingData.url}" target="_blank">
+                    <img class="h-full w-full object-cover cursor-pointer p-6 rounded-4xl" src="${listingData.image}" alt="listing">
+                </a>
+            </div>
+
             <div class="w-[15%] h-full py-6 flex flex-col items-start gap-2 text-white">
                 <p class="text-2xl font-bold truncate">${listingData.title}</p>
-                <p class="text-xl">$${listingData.price}</p>
-
+                <p class="text-xl">${listingData.price}</p>
                 <p class="text-lg mt-auto">+Free Delivery</p>
             </div>
 
@@ -42,41 +60,46 @@ function displayListing(data){
     }
 }
 
-function getFilters(){
-    try{
-        const minPrice = document.getElementById('min-price');
-        const maxPrice = document.getElementById('max-price');
-
-        console.log(minPrice.value);
-        console.log(maxPrice.value);
-    }
-}
-
-window.addEventListener('DOMContentLoaded', async () => {
-    const params = new URLSearchParams(window.location.search);
-    const search = params.get("q");
-
+async function runSearch(search, filters = null) {
     const apiURL = '/api/search';
 
-    const filters = getFilters(); 
-
-    try{
+    try {
         const response = await fetch(apiURL, {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({search})
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ search, filters })
         });
 
         const result = await response.json();
 
-        if (result.success){
+        if (result.success) {
             displayListing(result.data);
-        } 
-
+        }
     } catch (error) {
-    console.error('Network Error:', error);
-    return {success: false, error: error.message};
-    }  
-    
-})
-    
+        console.error('Network Error:', error);
+    }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const search = params.get('q');
+    const filtersParam = params.get('filters');
+
+    let filters = null;
+    if (filtersParam) {
+        try {
+            filters = JSON.parse(filtersParam);
+        } catch (error) {
+            console.error('Invalid filters param:', error);
+        }
+    }
+
+    if (search) {
+        runSearch(search, filters);
+    }
+});
+
+window.addEventListener('search:updated', (event) => {
+    const { search, filters } = event.detail;
+    runSearch(search, filters);
+});
