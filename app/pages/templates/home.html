@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+        
+    <title>EbayScraper</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+{% endblock %}
+
+{% block body %}
+
+    <!-- Market Summary -->
+    <div class="w-[full] h-[50%] flex justify-center items-center">
+        <div class="w-[95%] h-[85%] flex flex-col gap-10">
+            <div class="w-auto h-auto text-white text-3xl">Market Summary</div>
+            <div class="w-full h-[70%] flex justify-between">
+
+                <!-- INFO CARD-->
+                <div class="w-[30%] h-full outline outline-white rounded-2xl">
+                    <div class="w-full h-[25%] flex border-white border-b-1">
+                        <div class="w-[20%] h-full flex justify-end">
+                            <img class="w-[80%] h-full text-white scale-50" src="{{url_for('static', filename='images/icons/increase-light.png')}}" alt="increase">
+                        </div>
+                        <div class="relative w-full h-full flex items-center justify-start text-white text-2xl font-bold">GPU Prices <span class="absolute right-2 text-lg font-light hover:brightness-90"><a href="">See All</a></span></div>
+                    </div>
+                    <div class="w-full h-[75%] grid grid-template-rows-4">
+                        <div class="w-full h-auto text-white text-xl flex items-center pl-2"><p><span class="brightness-90">Average:</span> £92</p></div>
+                        <div class="w-full h-auto text-white text-xl flex items-center pl-2"><p><span class="brightness-90">30-Day Change:</span> +5.2%</p></div>
+                        <div class="w-full h-auto text-white text-xl flex items-center pl-2"><p><span class="brightness-90">Frequently Bought:</span> RTX 4060</p></div>
+                        <div class="w-full h-auto text-white text-xl flex items-center pl-2"><p><span class="brightness-90">Potential Profit:</span> RX 2600</p></div>
+                    </div>
+                </div>
+
+
+                <!-- INFO CARD-->
+                <div class="w-[30%] h-full outline outline-white rounded-2xl">
+                    <div class="w-full h-[25%] flex border-white border-b-1">
+                        <div class="w-[20%] h-full flex justify-end">
+                            <img class="w-[80%] h-full text-white scale-50" src="{{url_for('static', filename='images/icons/decrease-light.png')}}" alt="decrease">
+                        </div>
+                        <div class="relative w-full h-full flex items-center justify-start text-white text-2xl font-bold">CPU Prices <span class="absolute right-2 text-lg font-light hover:brightness-90"><a href="">See All</a></span></div>
+                    </div>
+                    <div class="w-full h-[75%] grid grid-template-rows-4">
+                        <div class="w-full h-auto text-white text-xl flex items-center pl-2"><p><span class="brightness-90">Average:</span> £52</p></div>
+                        <div class="w-full h-auto text-white text-xl flex items-center pl-2"><p><span class="brightness-90">30-Day Change:</span> -1.2%</p></div>
+                        <div class="w-full h-auto text-white text-xl flex items-center pl-2"><p><span class="brightness-90">Frequently Bought:</span> ryzen 5 3600</p></div>
+                        <div class="w-full h-auto text-white text-xl flex items-center pl-2"><p><span class="brightness-90">Potential Profit:</span> intel i5-6500</p></div>
+                    </div>
+                </div>
+
+
+                <!-- INFO CARD-->
+                <div class="w-[30%] h-full outline outline-white rounded-2xl">
+                    <div class="w-full h-[25%] flex border-white border-b-1">
+                        <div class="w-[20%] h-full flex justify-end">
+                            <img class="w-[80%] h-full text-white scale-50" src="{{url_for('static', filename='images/icons/fire-light.png')}}" alt="increase">
+                        </div>
+                        <div class="relative w-full h-full flex items-center justify-start text-white text-2xl font-bold">Trending Items <span class="absolute right-2 text-lg font-light hover:brightness-90"><a href="">See All</a></span></div>
+                    </div>
+                    <div class="w-full h-[75%] grid grid-template-rows-4">
+                        <div class="w-full h-auto text-white text-xl flex items-center pl-2"><p><span class="brightness-90">#1 </span> RTX 4060</p></div>
+                        <div class="w-full h-auto text-white text-xl flex items-center pl-2"><p><span class="brightness-90">#2 </span> Ryzen 9 9950X3D</p></div>
+                        <div class="w-full h-auto text-white text-xl flex items-center pl-2"><p><span class="brightness-90">#3 </span> GTX 3060</p></div>
+                        <div class="w-full h-auto text-white text-xl flex items-center pl-2"><p><span class="brightness-90">#4 </span> RX 580</p></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="w-full h-[50%] flex justify-center items-center">
+        <div class="w-[95%] h-[85%] grid grid-cols-2 gap-[5%]">
+            
+            <!-- Recent Searches -->
+            <div class="w-auto h-full outline outline-white rounded-2xl">
+                <div class="w-full h-[20%] flex border-b-1 border-white">
+                    <div class="w-[50%] h-full flex items-center text-white text-3xl pl-4"><h1>Recent Searches</h1></div>
+                    <div class="w-[20%] h-full flex justify-start items-center text-white text-sm brightness-90"><a class="hover:underline cursor-pointer">See All</a></div>
+                    <div class="w-auto h-full flex items-center justify-end text-white text-3xl pr-3"><button class="w-[13%] h-auto p-2 hover:outline outline-white rounded-lg cursor-pointer"><img class="w-[100%]" src="{{url_for('static', filename='images/icons/hamburger-light.png')}}" alt=""></button></div>
+                </div>
+                <div class="w-full h-[80%] flex flex-col">
+                    <div class="flex-1 flex flex-col">
+                        <!-- Listing Row -->
+                        <div class="flex h-[25%] min-h-0 items-center gap-3 p-2 overflow-hidden">
+                            <div class="h-12 w-12 flex-shrink-0 overflow-hidden rounded-lg">
+                                <img class="h-full w-full object-cover cursor-pointer" src="{{url_for('static', filename='images/listing.webp')}}" alt="listing">
+                            </div>
+                            <div class="flex min-w-0 flex-1 items-center gap-3">
+                                <div class="w-[30%] min-w-0">
+                                    <p class=" text-lg font-thin text-white">Gaming PC</p>
+                                    <p class=" text-md font-bold text-white">£25</p>
+                                </div>
+                                <div class="flex min-w-0 flex-1 items-center gap-[5%]">
+                                    <button class="whitespace-nowrap rounded outline outline-white px-2 py-1 text-white hover:outline-offset-3 ease duration-50">View Listing</button>
+                                    <button class="whitespace-nowrap rounded outline outline-white px-2 py-1 text-white hover:outline-offset-3 ease duration-50">View Similar</button>
+                                </div>
+                                <div class="flex w-[10%] min-w-0 items-center justify-end text-sm text-white">
+                                    <p class="">12/05/2026</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Listing Row -->
+                        <div class="flex h-[25%] min-h-0 items-center gap-3 p-2 overflow-hidden">
+                            <div class="h-12 w-12 flex-shrink-0 overflow-hidden rounded-lg">
+                                <img class="h-full w-full object-cover cursor-pointer" src="{{url_for('static', filename='images/listing.webp')}}" alt="listing">
+                            </div>
+                            <div class="flex min-w-0 flex-1 items-center gap-3">
+                                <div class="w-[30%] min-w-0">
+                                    <p class=" text-lg font-thin text-white">Gaming PC</p>
+                                    <p class=" text-md font-bold text-white">£25</p>
+                                </div>
+                                <div class="flex min-w-0 flex-1 items-center gap-[5%]">
+                                    <button class="whitespace-nowrap rounded outline outline-white px-2 py-1 text-white hover:outline-offset-3 ease duration-50">View Listing</button>
+                                    <button class="whitespace-nowrap rounded outline outline-white px-2 py-1 text-white hover:outline-offset-3 ease duration-50">View Similar</button>
+                                </div>
+                                <div class="flex w-[10%] min-w-0 items-center justify-end text-sm text-white">
+                                    <p class="">12/05/2026</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Listing Row -->
+                        <div class="flex h-[25%] min-h-0 items-center gap-3 p-2 overflow-hidden">
+                            <div class="h-12 w-12 flex-shrink-0 overflow-hidden rounded-lg">
+                                <img class="h-full w-full object-cover cursor-pointer" src="{{url_for('static', filename='images/listing.webp')}}" alt="listing">
+                            </div>
+                            <div class="flex min-w-0 flex-1 items-center gap-3">
+                                <div class="w-[30%] min-w-0">
+                                    <p class=" text-lg font-thin text-white">Gaming PC</p>
+                                    <p class=" text-md font-bold text-white">£25</p>
+                                </div>
+                                <div class="flex min-w-0 flex-1 items-center gap-[5%]">
+                                    <button class="whitespace-nowrap rounded outline outline-white px-2 py-1 text-white hover:outline-offset-3 ease duration-50">View Listing</button>
+                                    <button class="whitespace-nowrap rounded outline outline-white px-2 py-1 text-white hover:outline-offset-3 ease duration-50">View Similar</button>
+                                </div>
+                                <div class="flex w-[10%] min-w-0 items-center justify-end text-sm text-white">
+                                    <p class="">12/05/2026</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Listing Row -->
+                        <div class="flex h-[25%] min-h-0 items-center gap-3 p-2 overflow-hidden">
+                            <div class="h-12 w-12 flex-shrink-0 overflow-hidden rounded-lg">
+                                <img class="h-full w-full object-cover cursor-pointer" src="{{url_for('static', filename='images/listing.webp')}}" alt="listing">
+                            </div>
+                            <div class="flex min-w-0 flex-1 items-center gap-3">
+                                <div class="w-[30%] min-w-0">
+                                    <p class=" text-lg font-thin text-white">Gaming PC</p>
+                                    <p class=" text-md font-bold text-white">£25</p>
+                                </div>
+                                <div class="flex min-w-0 flex-1 items-center gap-[5%]">
+                                    <button class="whitespace-nowrap rounded outline outline-white px-2 py-1 text-white hover:outline-offset-3 ease duration-50">View Listing</button>
+                                    <button class="whitespace-nowrap rounded outline outline-white px-2 py-1 text-white hover:outline-offset-3 ease duration-50">View Similar</button>
+                                </div>
+                                <div class="flex w-[10%] min-w-0 items-center justify-end text-sm text-white">
+                                    <p class="">12/05/2026</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Potential Profits -->
+            <div class="w-auto h-full outline outline-white rounded-2xl">
+                <div class="w-full h-[20%] flex border-b-1 border-white">
+                    <div class="w-[50%] h-full flex items-center text-white text-3xl pl-4"><h1>Potential Profits</h1></div>
+                    <div class="w-[20%] h-full flex justify-start items-center text-white text-sm brightness-90"><a class="hover:underline cursor-pointer">See All</a></div>
+                    <div class="w-auto h-full flex items-center justify-end text-white text-3xl pr-3"><button class="w-[13%] h-auto p-2 hover:outline outline-white rounded-lg cursor-pointer"><img class="w-[100%]" src="{{url_for('static', filename='images/icons/hamburger-light.png')}}" alt=""></button></div>
+                </div>
+                <div class="w-full h-[80%] flex flex-col">
+                    <div class="flex-1 flex flex-col">
+                        <!-- Listing Row -->
+                        <div class="flex h-[25%] min-h-0 items-center gap-3 p-2 overflow-hidden">
+                            <div class="h-12 w-12 flex-shrink-0 overflow-hidden rounded-lg">
+                                <img class="h-full w-full object-cover cursor-pointer" src="{{url_for('static', filename='images/listing.webp')}}" alt="listing">
+                            </div>
+                            <div class="flex min-w-0 flex-1 items-center gap-3">
+                                <div class="w-[30%] min-w-0">
+                                    <p class=" text-lg font-thin text-white">Gaming PC</p>
+                                    <p class=" text-md font-bold text-white">£25</p>
+                                </div>
+                                <div class="flex min-w-0 flex-1 items-center gap-[5%]">
+                                    <button class="whitespace-nowrap rounded outline outline-white px-2 py-1 text-white hover:outline-offset-3 ease duration-50">View Listing</button>
+                                    <button class="whitespace-nowrap rounded outline outline-white px-2 py-1 text-white hover:outline-offset-3 ease duration-50">View Similar</button>
+                                </div>
+                                <div class="flex w-[10%] min-w-0 items-center justify-end text-sm text-white">
+                                    <p class="">12/05/2026</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Listing Row -->
+                        <div class="flex h-[25%] min-h-0 items-center gap-3 p-2 overflow-hidden">
+                            <div class="h-12 w-12 flex-shrink-0 overflow-hidden rounded-lg">
+                                <img class="h-full w-full object-cover cursor-pointer" src="{{url_for('static', filename='images/listing.webp')}}" alt="listing">
+                            </div>
+                            <div class="flex min-w-0 flex-1 items-center gap-3">
+                                <div class="w-[30%] min-w-0">
+                                    <p class=" text-lg font-thin text-white">Gaming PC</p>
+                                    <p class=" text-md font-bold text-white">£25</p>
+                                </div>
+                                <div class="flex min-w-0 flex-1 items-center gap-[5%]">
+                                    <button class="whitespace-nowrap rounded outline outline-white px-2 py-1 text-white hover:outline-offset-3 ease duration-50">View Listing</button>
+                                    <button class="whitespace-nowrap rounded outline outline-white px-2 py-1 text-white hover:outline-offset-3 ease duration-50">View Similar</button>
+                                </div>
+                                <div class="flex w-[10%] min-w-0 items-center justify-end text-sm text-white">
+                                    <p class="">12/05/2026</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Listing Row -->
+                        <div class="flex h-[25%] min-h-0 items-center gap-3 p-2 overflow-hidden">
+                            <div class="h-12 w-12 flex-shrink-0 overflow-hidden rounded-lg">
+                                <img class="h-full w-full object-cover cursor-pointer" src="{{url_for('static', filename='images/listing.webp')}}" alt="listing">
+                            </div>
+                            <div class="flex min-w-0 flex-1 items-center gap-3">
+                                <div class="w-[30%] min-w-0">
+                                    <p class=" text-lg font-thin text-white">Gaming PC</p>
+                                    <p class=" text-md font-bold text-white">£25</p>
+                                </div>
+                                <div class="flex min-w-0 flex-1 items-center gap-[5%]">
+                                    <button class="whitespace-nowrap rounded outline outline-white px-2 py-1 text-white hover:outline-offset-3 ease duration-50">View Listing</button>
+                                    <button class="whitespace-nowrap rounded outline outline-white px-2 py-1 text-white hover:outline-offset-3 ease duration-50">View Similar</button>
+                                </div>
+                                <div class="flex w-[10%] min-w-0 items-center justify-end text-sm text-white">
+                                    <p class="">12/05/2026</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Listing Row -->
+                        <div class="flex h-[25%] min-h-0 items-center gap-3 p-2 overflow-hidden">
+                            <div class="h-12 w-12 flex-shrink-0 overflow-hidden rounded-lg">
+                                <img class="h-full w-full object-cover cursor-pointer" src="{{url_for('static', filename='images/listing.webp')}}" alt="listing">
+                            </div>
+                            <div class="flex min-w-0 flex-1 items-center gap-3">
+                                <div class="w-[30%] min-w-0">
+                                    <p class=" text-lg font-thin text-white">Gaming PC</p>
+                                    <p class=" text-md font-bold text-white">£25</p>
+                                </div>
+                                <div class="flex min-w-0 flex-1 items-center gap-[5%]">
+                                    <button class="whitespace-nowrap rounded outline outline-white px-2 py-1 text-white hover:outline-offset-3 ease duration-50">View Listing</button>
+                                    <button class="whitespace-nowrap rounded outline outline-white px-2 py-1 text-white hover:outline-offset-3 ease duration-50">View Similar</button>
+                                </div>
+                                <div class="flex w-[10%] min-w-0 items-center justify-end text-sm text-white">
+                                    <p class="">12/05/2026</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

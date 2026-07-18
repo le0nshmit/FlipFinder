@@ -1,0 +1,25 @@
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="{{url_for('static', filename='js/components/header.js')}}"></script>
+
+<header class="w-full h-[10vh] flex justify-between">
+
+    <section class="w-[15%] h-full flex justify-center items-center border-white">
+        <a class="inline-flex items-center" href="/">
+            <img class="block h-auto w-auto object-contain text-white scale-60 hover:scale-65 ease-in duration-50 before:outline before:outline-white" src="{{url_for('static', filename='images/logos/logo-light.png')}}" alt="Logo">
+        </a>
+    </section>
+
+    <section class="w-[30%] h-full flex justify-center items-center ml-[15%]">
+        <form id="form" class="outline outline-white rounded-md flex w-full" action="">
+            <input class="text-white p-2 w-12 scale-75" src="/static/images/icons/search-light.png" type="image" alt="Submit">
+            <input class="text-white border-y-white border-r-white w-full p-2 focus:outline-none" name="search" type="text">
+        </form>
+    </section>
+
+    <section class="w-[10%] h-full flex justify-end items-center ml-[20%] p-4">
+        <div class="group relative w-15 h-full flex flex-col items-center justify-center cursor-pointer">
+            <img class="w-full rounded-full transition duration-150 scale-80 ease-out group-hover:scale-100 group-hover:-translate-y-2" src="{{url_for('static', filename='images/icons/profile.webp')}}" alt="profile">
+            <span class="absolute -bottom-3 text-white opacity-0 transition-all duration-150 group-hover:opacity-100 group-hover:-bottom-4 pointer-events-none">Account</span>
+        </div>
+    </section>
+</header>

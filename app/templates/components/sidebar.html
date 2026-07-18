@@ -1,0 +1,143 @@
+<script src="{{url_for('static', filename='js/components/sidebar.js')}}"></script>
+
+<div class="w-full h-full border-white">
+    
+    {% if page == 'search' %}
+        <div class="w-full h-full flex flex-col gap-12 items-center">
+            <!-- Header-->
+            <div class="relative w-[80%] h-auto flex justify-center outline outline-white rounded-md py-2 mt-[10%]">
+                <h1 class="text-white text-2xl">Select Filters!</h1>
+            </div>
+
+            <!-- Divider -->
+            <div class="w-[80%] h-1px outline outline-white"></div>
+
+
+            <!-- Price -->
+            <div class="w-[80%] h-auto flex flex-col gap-4 items-center outline-white rounded-md py-2">
+                <h1 class="w-full text-white text-xl text-left">Price Range</h1>
+
+                <div id="price-slider" class="w-full"></div>
+                <div class="w-full flex justify-evenly mt-4">
+                    <input
+                        id="min-price"
+                        class="w-[35%] outline outline-white rounded-md text-white text-center py-2"
+                        type="number"
+                        placeholder="Min"
+                    >
+
+                    <input
+                        id="max-price"
+                        class="w-[35%] outline outline-white rounded-md text-white text-center py-2"
+                        type="number"
+                        placeholder="Max"
+                    >
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="w-[80%] h-1px outline outline-white"></div>
+
+
+            <!-- Condition -->
+            <div class="w-[80%] h-auto flex flex-col gap-4 items-center outline-white rounded-md py-2">
+                <h1 class="w-full text-white text-xl text-left">Condition</h1>
+                <div class="w-full flex justify-between">
+                    <h1 class="w-[30%] text-white text-md text-left">Used</h1>
+                    <input class="w-4" type="checkbox">
+                </div>
+                <div class="w-full flex justify-between">
+                    <h1 class="w-[30%] text-white text-md text-left">New</h1>
+                    <input class="w-4" type="checkbox">
+                </div>
+                <div class="w-full flex justify-between">
+                    <h1 class="w-[30%] text-white text-md text-left">Broken</h1>
+                    <input class="w-4" type="checkbox">
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="w-[80%] h-1px outline outline-white"></div>
+
+            <!-- Reset -->
+            <div class="w-[80%] h-auto flex items-center justify-center">
+                <p class="text-lg text-white hover:underline cursor-pointer">reset filters</p>
+            </div>
+        </div>
+    {% else %}
+
+        <div class="w-full h-[50%] flex flex-col items-center justify-evenly">
+
+            <!-- Navigation Button-->
+            <div class="relative outline outline-white rounded-lg w-[60%] h-12 flex justify-center items-center cursor-pointer hover:outline-2 hover:outline-offset-2 ease-in duration-50">
+                <a class="w-[75%] h-[50%] text-white pl-7 cursor-pointer text-center"><span class="absolute left-0 top-[50%] translate-y-[-50%] w-12"><img class="pl-2 cursor-pointer scale-80" src="/static/images/icons/sidebar/dashboard-light.png" alt="Dashboard Icon"></span>Dashboard</a>
+            </div>
+
+            <!-- Navigation Button-->
+            <div class="relative outline outline-white rounded-lg w-[60%] h-12 flex justify-center items-center cursor-pointer hover:outline-2 hover:outline-offset-2 ease-in duration-50">
+                <a class="w-[75%] h-[50%] text-white pl-7 cursor-pointer text-center" href="/search"><span class="absolute left-0 top-[50%] translate-y-[-50%] w-12"><img class="pl-2 cursor-pointer scale-80" src="/static/images/icons/search-light.png" alt="Dashboard Icon"></span>Search</a>
+            </div>
+
+            <!-- Navigation Button-->
+            <div class="relative outline outline-white rounded-lg w-[60%] h-12 flex justify-center items-center cursor-pointer hover:outline-2 hover:outline-offset-2 ease-in duration-50">
+                <a class="w-[75%] h-[50%] text-white pl-7 cursor-pointer text-center"><span class="absolute left-0 top-[50%] translate-y-[-50%] w-12"><img class="pl-2 cursor-pointer scale-80" src="/static/images/icons/sidebar/bell-light.png" alt="Dashboard Icon"></span>Alerts</a>
+            </div>
+
+            <!-- Navigation Button-->
+            <div class="relative outline outline-white rounded-lg w-[60%] h-12 flex justify-center items-center cursor-pointer hover:outline-2 hover:outline-offset-2 ease-in duration-50">
+                <a class="w-[75%] h-[50%] text-white pl-7 cursor-pointer text-center"><span class="absolute left-0 top-[50%] translate-y-[-50%] w-12"><img class="pl-2 cursor-pointer scale-80" src="/static/images/icons/sidebar/analytics-light.png" alt="Dashboard Icon"></span>Analytics</a>
+            </div>
+        </div>
+        <div class="w-full h-[50%] flex justify-center items-end">
+            <a class="group relative w-[75%] h-[10%] text-white cursor-pointer text-center flex justify-center items-center hover:font-bold">
+                <img class="absolute left-17 pl-2 cursor-pointer scale-100 w-8 opacity-0 group-hover:-translate-x-10 group-hover:opacity-100 ease-in duration-100" src="/static/images/icons/sidebar/watchlist-light.png" alt="Dashboard Icon">
+                Watchlist
+            </a>
+        </div>
+    {% endif %}
+</div>
+
+<style>
+    .noUi-target {
+        background: #333;
+        border: none;
+        height: 8px;
+        border-radius: 10px;
+        box-shadow: none;
+    }
+
+    /* The selected range */
+    .noUi-connect {
+        background: white;
+    }
+
+    /* Handles */
+    .noUi-handle {
+        width: 28px;
+        height: 28px;
+        right: -14px;
+        top: -10px;
+
+        background: rgba(255,255,255,0.95);
+        border-radius: 50%;
+        border: 2px solid rgba(255,255,255,0.9);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.22);
+        cursor: grab;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .noUi-handle:active {
+        cursor: grabbing;
+        transform: scale(1.05);
+        box-shadow: 0 8px 18px rgba(0,0,0,0.32);
+    }
+
+    .noUi-handle::before,
+    .noUi-handle::after {
+        display: none;
+    }
+
+    .noUi-handle:hover {
+        transform: scale(1.1);
+    }
+    </style>

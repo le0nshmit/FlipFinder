@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.8.1/dist/nouislider.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/nouislider@15.8.1/dist/nouislider.min.js"></script>
+    {% block head %} {% endblock %}
+</head>
+<body>
+    <style>
+        body{
+            background-color: #2d2c31;
+        }
+    </style>
+
+    {% include 'components/header.html' %}
+
+    <div class="w-full h-[90vh] grid grid-cols-[15%_auto]">
+        {% include 'components/sidebar.html' %}
+        <div class="w-full h-full border-t-2 border-l-2 border-white flex flex-col">
+            {% block body %} {% endblock %}
+        </div>
+    </div>
+</body>
+</html>
